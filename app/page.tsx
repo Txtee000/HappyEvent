@@ -5,7 +5,7 @@ import { ArrowRight, CakeSlice, Check, ChevronRight, Flame, Heart, Mic, MicOff, 
 import type { Candle } from '../components/Cake';
 const Cake = dynamic(()=>import('../components/Cake'),{ssr:false,loading:()=> <div className="cake-canvas loading">กำลังอบเค้กของคุณ…</div>});
 const colors=['#e68ba5','#a4b9a5','#b5a0c9','#edc574','#8eb9cd'];
-const initial:Candle[]=Array.from({length:5},(_,i)=>({id:i,x:Math.cos(i*Math.PI*2/5)*.8,z:Math.sin(i*Math.PI*2/5)*.8,color:colors[i]}));
+const initial:Candle[]=[];
 export default function Home(){
   const [flavor,setFlavor]=useState('strawberry');const [color,setColor]=useState(colors[0]);const [candles,setCandles]=useState(initial);
   const [name,setName]=useState('');const [phase,setPhase]=useState<'decorate'|'wish'|'celebrate'>('decorate');
