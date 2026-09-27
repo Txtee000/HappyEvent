@@ -11,7 +11,17 @@ export default function Home(){
   const [name,setName]=useState('');const [phase,setPhase]=useState<'decorate'|'wish'|'celebrate'>('decorate');
   const [tool,setTool]=useState<'name'|'flavor'|'color'|'candles'|'mic'>('flavor');
   const toolDialog=useRef<HTMLDialogElement>(null);
+  const deliveryDialog=useRef<HTMLDialogElement>(null);
   const openTool=(next:typeof tool)=>{setTool(next);toolDialog.current?.showModal();};
+  useEffect(()=>{
+    const dialog=deliveryDialog.current;
+    if(phase==='celebrate'){
+      toolDialog.current?.close();
+      if(dialog && !dialog.open)dialog.showModal();
+    }else{
+      dialog?.close();
+    }
+  },[phase]);
   const [mic,setMic]=useState(false);const [busy,setBusy]=useState(false);const [level,setLevel]=useState(0);const [error,setError]=useState('');const [sensitivity,setSensitivity]=useState(55);
   const audio=useRef<AudioContext|null>(null);const stream=useRef<MediaStream|null>(null);const frame=useRef(0);const mounted=useRef(true);const threshold=useRef(sensitivity);threshold.current=sensitivity;
   const stop=useCallback(()=>{cancelAnimationFrame(frame.current);stream.current?.getTracks().forEach(t=>t.stop());stream.current=null;void audio.current?.close().catch(()=>{});audio.current=null;if(mounted.current){setMic(false);setLevel(0);}},[]);
@@ -70,6 +80,12 @@ export default function Home(){
       <div className="dialog-heading"><h2 id="tool-title">{({name:'เค้กนี้เป็นของใคร?',flavor:'เลือกรสเค้ก',color:'เลือกสีเทียน',candles:'เทียนวันเกิด',mic:'ปรับไมโครโฟน'})[tool]}</h2><button className="close-tool" onClick={()=>toolDialog.current?.close()} aria-label="ปิดเครื่องมือ"><X size={21}/></button></div>
       {tool==='name'?<><label className="field-label" htmlFor="name">ชื่อคนพิเศษ</label><input id="name" maxLength={30} value={name} onChange={e=>setName(e.target.value)} placeholder="ชื่อคนพิเศษ"/></>:tool==='flavor'?<div className="flavors">{[{id:'strawberry',label:'สตรอว์เบอร์รี',icon:'🍓'},{id:'vanilla',label:'วานิลลา',icon:'🌼'},{id:'chocolate',label:'ช็อกโกแลต',icon:'🍫'}].map(f=><button className={flavor===f.id?'selected':''} key={f.id} onClick={()=>setFlavor(f.id)} aria-pressed={flavor===f.id}><span>{f.icon}</span>{f.label}{flavor===f.id&&<i><Check size={10}/></i>}</button>)}</div>:tool==='color'?<><p className="panel-sub">เลือกสีแล้วแตะหน้าเค้กเพื่อปักเทียนเล่มใหม่</p><div className="swatches">{colors.map((c,i)=><button key={c} aria-label={['สีชมพู','สีเขียว','สีม่วง','สีเหลือง','สีฟ้า'][i]} aria-pressed={color===c} className={color===c?'chosen':''} style={{background:c}} onClick={()=>setColor(c)}>{color===c&&<Check size={18}/>}</button>)}</div></>:tool==='candles'?<><div className="candle-row"><div className="counter"><button aria-label="ลบเทียนล่าสุด" disabled={!candles.length} onClick={()=>setCandles(c=>c.slice(0,-1))}><Minus size={20}/></button><strong>{candles.length}</strong><button aria-label="เพิ่มเทียน" disabled={candles.length>=24} onClick={add}><Plus size={20}/></button></div><span>ปักได้สูงสุด 24 เล่ม<br/><small>หรือแตะบนหน้าเค้กได้เลย</small></span></div></>:<><p className="panel-sub">เพิ่มความไวหากเป่าแล้วเทียนยังไม่ดับ</p><label className="sensitivity">ความไวไมโครโฟน <span>{sensitivity}%</span><input aria-label="ความไวไมโครโฟน" type="range" min="10" max="90" value={sensitivity} onChange={e=>setSensitivity(Number(e.target.value))}/></label><p className="panel-sub">เสียงประมวลผลในเครื่อง ไม่บันทึกหรือส่งออก</p></>}
       <button className="primary" onClick={()=>toolDialog.current?.close()}><Check size={17}/> เสร็จแล้ว</button>
+    </dialog>
+    <dialog ref={deliveryDialog} className="tool-dialog panel delivery-dialog" aria-labelledby="delivery-title" aria-describedby="delivery-message">
+      <div className="round-icon" aria-hidden="true"><CakeSlice size={30}/></div>
+      <h2 id="delivery-title">เค้กมาส่งแล้ว</h2>
+      <p id="delivery-message">กรุณาไปรับด้วย</p>
+      <form method="dialog"><button type="submit" className="primary" autoFocus>ตกลง</button></form>
     </dialog>
   </main>;
 }

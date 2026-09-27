@@ -46,6 +46,10 @@
 .tool-dialog .counter button { min-width: 48px; min-height: 48px; }
 .tool-dialog .flavors button { min-height: 92px; font-size: 11px; }
 .tool-dialog input:not([type=range]) { min-height: 48px; font-size: 16px; }
+.delivery-dialog { text-align: center; }
+.delivery-dialog h2 { font-size: 24px; margin: 0 0 8px; }
+.delivery-dialog p { color: var(--muted); margin: 0; font-size: 15px; }
+.delivery-dialog .primary { min-height: 48px; font-size: 14px; }
 @media (max-width: 760px) {
   .compact-app { padding: 10px 10px max(10px, env(safe-area-inset-bottom)); }
   .compact-workspace { max-width: 520px; gap: 10px; }
