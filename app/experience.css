@@ -1,0 +1,84 @@
+.compact-app {
+  height: 100vh;
+  height: 100dvh;
+  padding: 24px;
+  display: flex;
+}
+.compact-workspace {
+  width: 100%;
+  max-width: 1060px;
+  min-height: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.compact-workspace .stage { flex: 1; min-height: 0; }
+.compact-workspace .cake-canvas { flex: 1; height: 0; min-height: 0; margin-top: 126px; }
+.compact-workspace .cake-greeting { top: 65px; }
+.cake-instruction { font-size: 11px; color: var(--ink); margin: 8px 16px 0; }
+.compact-workspace .stage-help { margin-top: 0; padding: 6px 0 12px; flex-shrink: 0; }
+.compact-workspace .stage-bottom { padding: 13px 0; flex-shrink: 0; }
+.action-dock { flex-shrink: 0; padding: 14px 20px; border: 1px solid var(--border); border-radius: 18px; background: #fffdf9; }
+.dock-heading { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; margin-bottom: 10px; }
+.step-count { color: #b87d88; }
+.dock-controls { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.tool-buttons { display: flex; gap: 10px; }
+.tool-button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-height: 54px; min-width: 62px; border: 1px solid var(--border); border-radius: 12px; background: #fcf6f2; color: #a56f7b; padding: 8px 12px; font-size: 10px; touch-action: manipulation; }
+.tool-button:hover { background: #f7e7e7; }
+.next-action { width: min(100%, 300px); }
+.action-dock .primary { margin: 0; min-height: 48px; }
+.next-action small { display: block; text-align: center; font-size: 9px; color: var(--muted); margin-top: 5px; }
+.wish-controls .primary { flex: 1; max-width: 340px; }
+.live-meter { font-size: 10px; color: var(--muted); margin-bottom: 10px; }
+.live-meter .meter { margin: 6px 0; height: 4px; }
+.action-dock .error { margin: 0 0 10px; max-height: 65px; overflow-y: auto; font-size: 10px!important; }
+.celebration-controls > span { display: flex; align-items: center; gap: 8px; color: #b87d88; font-size: 12px; }
+.celebration-controls .primary { width: 240px; }
+.tool-dialog { width: min(420px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 24px; color: var(--ink); overflow-y: auto; }
+.tool-dialog::backdrop { background: #3f302c55; backdrop-filter: blur(3px); }
+.dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
+.dialog-heading h2 { font-size: 20px; margin: 0; }
+.close-tool { width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center; border: 0; border-radius: 50%; background: #f7eeea; color: var(--ink); }
+.tool-dialog .swatches { gap: 18px; padding: 6px; }
+.tool-dialog .swatches button { width: 42px; height: 42px; }
+.tool-dialog .counter { height: 48px; }
+.tool-dialog .counter button { min-width: 48px; min-height: 48px; }
+.tool-dialog .flavors button { min-height: 92px; font-size: 11px; }
+.tool-dialog input:not([type=range]) { min-height: 48px; font-size: 16px; }
+@media (max-width: 760px) {
+  .compact-app { padding: 10px 10px max(10px, env(safe-area-inset-bottom)); }
+  .compact-workspace { max-width: 520px; gap: 10px; }
+  .compact-workspace .cake-greeting { top: 70px; }
+  .compact-workspace .cake-canvas { margin-top: 132px; }
+  .compact-workspace .stage-bottom { margin: 0 16px; padding: 10px 0; }
+  .compact-workspace .stage-help { padding-bottom: 8px; }
+  .action-dock { padding: 12px; border-radius: 15px; }
+  .dock-controls { flex-wrap: wrap; gap: 10px; }
+  .tool-buttons { width: 100%; justify-content: space-between; gap: 8px; }
+  .tool-button { min-width: 0; min-height: 48px; padding: 6px 10px; }
+  .tool-buttons .tool-button { flex: 1; }
+  .next-action { width: 100%; }
+  .wish-controls { flex-wrap: nowrap; gap: 6px; }
+  .wish-controls .tool-button { min-width: 45px; padding: 5px 6px; font-size: 9px; }
+  .wish-controls .primary { font-size: 11px; padding: 10px 6px; }
+  .celebration-controls { flex-wrap: nowrap; }
+  .celebration-controls > span { font-size: 10px; }
+  .celebration-controls .primary { width: auto; flex: 1; font-size: 11px; }
+}
+@media (max-height: 540px) {
+  .compact-app { padding: 8px; }
+  .compact-workspace { gap: 6px; }
+  .compact-workspace .cake-greeting { top: 52px; }
+  .compact-workspace .cake-greeting > span { font-size: 17px; }
+  .compact-workspace .cake-greeting h2 { font-size: 17px; margin: 2px 0; }
+  .compact-workspace .cake-canvas { margin-top: 103px; }
+  .compact-workspace .stage-bottom { padding: 6px 0; }
+  .compact-workspace .stage-help { display: none; }
+  .dock-heading { display: none; }
+  .dock-controls { flex-wrap: nowrap; }
+  .tool-buttons { width: auto; flex: 1; }
+  .next-action { width: 44%; }
+  .next-action small { display: none; }
+  .cake-instruction { font-size: 9px; margin-top: 4px; }
+}
