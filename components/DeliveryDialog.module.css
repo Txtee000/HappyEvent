@@ -1,0 +1,82 @@
+.route {
+  margin-top: 22px;
+  padding: 18px 20px 14px;
+  border: 1px solid #f0e0dc;
+  border-radius: 16px;
+  background: #fff7f4;
+}
+
+.path {
+  position: relative;
+  height: 48px;
+  margin: 0 24px;
+}
+
+.path::before,
+.progress {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  height: 3px;
+  border-radius: 3px;
+}
+
+.path::before {
+  content: '';
+  right: 0;
+  background: #eadbd7;
+}
+
+.progress {
+  width: 100%;
+  background: #c98594;
+  transform-origin: left;
+  animation: travel-progress 2.6s ease-in-out both;
+}
+
+.vehicle {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 100%;
+  width: 46px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: #a96f7d;
+  background: #fffdf9;
+  border: 1px solid #e6c6ce;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px #a96f7d25;
+  transform: translateX(-50%);
+  animation: travel-cake 2.6s ease-in-out both;
+}
+
+.cake {
+  position: absolute;
+  top: 7px;
+  left: 9px;
+  background: #fffdf9;
+}
+
+.stops {
+  display: flex;
+  justify-content: space-between;
+  color: #9f827f;
+  font-size: 12px;
+}
+
+@keyframes travel-cake {
+  from { left: 0; }
+  to { left: 100%; }
+}
+
+@keyframes travel-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vehicle,
+  .progress { animation: none; }
+}

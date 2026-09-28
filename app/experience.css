@@ -35,7 +35,7 @@
 .action-dock .error { margin: 0 0 10px; max-height: 65px; overflow-y: auto; font-size: 10px!important; }
 .celebration-controls > span { display: flex; align-items: center; gap: 8px; color: #b87d88; font-size: 12px; }
 .celebration-controls .primary { width: 240px; }
-.tool-dialog { width: min(420px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 24px; color: var(--ink); overflow-y: auto; }
+.tool-dialog { position: fixed; inset: 0; margin: auto; width: min(420px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 24px; color: var(--ink); overflow-y: auto; }
 .tool-dialog::backdrop { background: #3f302c55; backdrop-filter: blur(3px); }
 .dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
 .dialog-heading h2 { font-size: 20px; margin: 0; }
@@ -46,10 +46,6 @@
 .tool-dialog .counter button { min-width: 48px; min-height: 48px; }
 .tool-dialog .flavors button { min-height: 92px; font-size: 11px; }
 .tool-dialog input:not([type=range]) { min-height: 48px; font-size: 16px; }
-.delivery-dialog { text-align: center; }
-.delivery-dialog h2 { font-size: 24px; margin: 0 0 8px; }
-.delivery-dialog p { color: var(--muted); margin: 0; font-size: 15px; }
-.delivery-dialog .primary { min-height: 48px; font-size: 14px; }
 @media (max-width: 760px) {
   .compact-app { padding: 10px 10px max(10px, env(safe-area-inset-bottom)); }
   .compact-workspace { max-width: 520px; gap: 10px; }
